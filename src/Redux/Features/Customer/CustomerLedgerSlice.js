@@ -81,7 +81,7 @@ export const deleteCustomerLedger = createAsyncThunk("customer/deleteCustomerLed
     async ({ id, callback }, { dispatch }) => {
         try {
             dispatch(deleteCustomerLedgerRequest())
-            const response = await axios.delete(`${API_URL}/custumersecurity/${id}`);
+            const response = await axios.delete(`${API_URL}/customerledger/${id}`);
             if (response.status === 200) {
                 console.log(response)
                 dispatch(deleteCustomerLedgerSuccess(response.data.deletedata));

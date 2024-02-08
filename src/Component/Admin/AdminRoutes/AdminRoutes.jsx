@@ -157,7 +157,7 @@ let AdminRoutes = [
     element: <CustomerLedger />,
   },
   {
-    path: "/admin/edit_customer_ledger",
+    path: "/admin/edit_customer_ledger/:id",
     element: <EditCustomerLedger />,
   },
 

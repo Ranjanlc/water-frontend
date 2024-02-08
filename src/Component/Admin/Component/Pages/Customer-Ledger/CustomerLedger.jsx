@@ -215,7 +215,7 @@ const CustomerLedger = () => {
     handleShow();
   };
 
-  const stockDeleteHandler = () => {
+  const customerLedgerDeleteHandler = () => {
     dispatch(
       deleteCustomerLedger({
         id: selectedRow,
@@ -950,7 +950,7 @@ const CustomerLedger = () => {
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="danger" onClick={stockDeleteHandler}>
+          <Button variant="danger" onClick={customerLedgerDeleteHandler}>
             Delete
           </Button>
         </Modal.Footer>
