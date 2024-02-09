@@ -18,6 +18,7 @@ export const StockInOut = () => {
   const [quantity, setQuantity] = useState("");
   const [stockStatus, setStockStatus] = useState("");
   const [remark, setRemark] = useState("");
+
   const [dateError, setDateError] = useState("");
   const [salesmanError, setSalesmanError] = useState("");
   const [productError, setProductError] = useState("");
@@ -104,6 +105,7 @@ export const StockInOut = () => {
           setQuantity("");
           setStockStatus("");
           setRemark("");
+          
           setDateError("");
           setSalesmanError("");
           setProductError("");

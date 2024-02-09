@@ -7,6 +7,7 @@ import AddProductTypeReducer from "./Products/AddProductTypeSlice";
 import CustomerSecurityAmountReducer from "./Customer/CustomerSecurityAmountSlice";
 import CustomerLedgerReducer from "./Customer/CustomerLedgerSlice";
 import StockInOutReducer from "./Products/StockInOutSlice";
+import AddNewEmployeeReducer from "./Employee/AddNewEmployeeSlice";
 
 const rootReducer = combineReducers({
     newProduct: AddNewProductReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     productType: AddProductTypeReducer,
     stockInOut: StockInOutReducer,
     customerSecurityAmount: CustomerSecurityAmountReducer,
-    customerLedger: CustomerLedgerReducer
+    customerLedger: CustomerLedgerReducer,
+    addNewEmployee: AddNewEmployeeReducer
 })
 const store = configureStore({
     reducer: rootReducer,
