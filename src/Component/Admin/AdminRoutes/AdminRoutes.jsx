@@ -130,7 +130,7 @@ let AdminRoutes = [
     element: <NewEditCustomer />,
   },
   {
-    path: "/admin/new_edit_customer/edit_customer",
+    path: "/admin/new_edit_customer/edit_customer/:id",
     element: <EditCustomer />,
   },
 
@@ -175,7 +175,7 @@ let AdminRoutes = [
     element: <CustomerBalanceSheet />,
   },
   {
-    path: "/admin/edit_customer_balance_sheet",
+    path: "/admin/edit_customer_balance_sheet/:id",
     element: <EditCustomerBalanceSheet />,
   },
 

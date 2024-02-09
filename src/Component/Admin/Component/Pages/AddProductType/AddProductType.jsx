@@ -1,4 +1,3 @@
-import React from "react";
 import "./AddProductType.css";
 import { Link } from "react-router-dom";
 import { useState, useCallback, useEffect } from "react";
@@ -68,7 +67,7 @@ const AddProductType = () => {
     setSelectedRow(id);
     handleShow();
   };
-  
+
   const productDeleteHandler = () => {
     dispatch(
       deleteProductType({
@@ -96,7 +95,7 @@ const AddProductType = () => {
         <main id="main" className="main">
           <section className="section">
             <div className="shadow p-3 mb-5 bg-body rounded  container-fluid c1 mt-0 ">
-              <div className="row">
+              <div className="row d-flex justify-content-between align-items-center">
                 <div className="col-md-7 col-sm-12 ">
                   <h5 className="">
                     <b>Add Product Type</b>
@@ -130,16 +129,16 @@ const AddProductType = () => {
                           setProductTypeError("");
                         }}
                       />
+                      {productTypeError && (
+                        <div
+                          className="d-flex gap-2 align-items-center"
+                          style={{ color: "red" }}
+                        >
+                          <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
+                          {productTypeError}
+                        </div>
+                      )}
                     </div>
-                    {productTypeError && (
-                      <div
-                        className="d-flex gap-2 align-items-center"
-                        style={{ color: "red" }}
-                      >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
-                        {productTypeError}
-                      </div>
-                    )}
                   </div>
                 </div>
                 <div className="d-grid gap-2 d-flex justify-content-center my-4">

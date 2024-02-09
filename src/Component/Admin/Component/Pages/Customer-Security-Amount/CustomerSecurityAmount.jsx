@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import "./CustomerSecurityAmount.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,7 +22,6 @@ const CustomerSecurityAmount = () => {
   const [totalDeposity, setTotalDeposity] = useState("");
   const [totalRefund, setTotalRefund] = useState("");
   const [balance, setBalance] = useState("");
-
   const [dateError, setDateError] = useState("");
   const [securityStatusError, setSecurityStatusError] = useState("");
   const [securityDetailError, setSecurityDetailError] = useState("");
@@ -180,7 +179,7 @@ const CustomerSecurityAmount = () => {
         <main id="main" className="main">
           <section className="section">
             <div className=" shadow p-3 mb-5 bg-body rounded  container-fluid c1 mt-0 ">
-              <div className="row">
+              <div className="row d-flex justify-content-between align-items-center">
                 <div className="col-md-7 col-sm-12 ">
                   <h5 className="">
                     <b>Customer Security</b>
@@ -196,15 +195,6 @@ const CustomerSecurityAmount = () => {
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
                   </div>
-                </div>
-                <div className="col-md-1 col-sm-12">
-                  <button
-                    type="button"
-                    className="btn btn-danger 
-                py-1"
-                  >
-                    Search
-                  </button>
                 </div>
               </div>
               <hr
@@ -231,7 +221,7 @@ const CustomerSecurityAmount = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {dateError}
                       </div>
                     )}
@@ -258,7 +248,7 @@ const CustomerSecurityAmount = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {securityStatusError}
                       </div>
                     )}
@@ -281,7 +271,7 @@ const CustomerSecurityAmount = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {securityDetailError}
                       </div>
                     )}
@@ -304,7 +294,7 @@ const CustomerSecurityAmount = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {securityAmountError}
                       </div>
                     )}
@@ -328,7 +318,7 @@ const CustomerSecurityAmount = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {customerNameError}
                       </div>
                     )}
@@ -351,7 +341,7 @@ const CustomerSecurityAmount = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {addressError}
                       </div>
                     )}
@@ -374,7 +364,7 @@ const CustomerSecurityAmount = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {totalDeposityError}
                       </div>
                     )}
@@ -397,7 +387,7 @@ const CustomerSecurityAmount = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {totalRefundError}
                       </div>
                     )}
@@ -420,7 +410,7 @@ const CustomerSecurityAmount = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {balanceError}
                       </div>
                     )}
@@ -546,8 +536,12 @@ const CustomerSecurityAmount = () => {
                         </thead>
                         <tbody>
                           {filteredCustomerSecurity?.length === 0 ? (
-                            <td colSpan={8} className="text-center mt-2">
-                              No Amount Details Found
+                            <td
+                              colSpan={12}
+                              className="text-center mt-2"
+                              style={{ color: "#10c2a7" }}
+                            >
+                              No Customer Security Amount Details Found
                             </td>
                           ) : (
                             <>
@@ -556,7 +550,9 @@ const CustomerSecurityAmount = () => {
                                   <tr key={i}>
                                     <td
                                       className="text-center"
-                                      style={{ paddingLeft: "3rem" }}
+                                      style={{
+                                        paddingLeft: "3rem",
+                                      }}
                                     >
                                       {customersecurity.date}
                                     </td>

@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 // import './AdminSidenav.css'
 
@@ -111,7 +110,7 @@ const AdminSidenav = () => {
               <li>
                 <Link className="nav-link " to="new_edit_customer">
                   <i className="bi bi-circle" />
-                  <span>New / Edit Customer</span>
+                  <span>Add Customer</span>
                 </Link>
               </li>
               <li>
