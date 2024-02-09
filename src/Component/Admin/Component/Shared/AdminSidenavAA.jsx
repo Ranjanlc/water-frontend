@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../Shared/Img/logo.png";
-
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import { ImUserTie } from "react-icons/im";
 import "./AdminSidenav.css";
 
 const AdminSidenavAA = () => {
@@ -20,17 +22,19 @@ const AdminSidenavAA = () => {
 
   return (
     <>
-      {/* ======= Header ======= */}
       <header
         id="header"
-        className="header fixed-top d-flex align-items-center  "
+        className="header fixed-top d-flex align-items-center justify-content-between"
       >
         <div className="d-flex align-items-center justify-content-between">
-          <Link to="/admin" className="logo d-flex align-items-center nav-link">
-            <img src={Logo} alt="" />
-            <span className=" d-lg-block">WaterSupply</span>
-          </Link>
-          <div className="d-flex">
+          <div className="d-flex align-items-center">
+            <Link
+              to="/admin"
+              className="logo d-flex align-items-center nav-link"
+            >
+              <img src={Logo} alt="" />
+              <span className=" d-lg-block">WaterSupply</span>
+            </Link>
             {isOpen ? (
               <div style={{ marginLeft: "-5px" }}>
                 <i
@@ -50,10 +54,21 @@ const AdminSidenavAA = () => {
             )}
           </div>
         </div>
+        <div className="pr-3">
+          <DropdownButton
+            id="dropdown-basic-button"
+            title={<ImUserTie size="1rem" />}
+          >
+            <Dropdown.Item href="#/action-1" style={{ fontSize: "1rem" }}>
+              Profile
+            </Dropdown.Item>
+            <Dropdown.Item href="#/action-2" style={{ fontSize: "1rem" }}>
+              Logout
+            </Dropdown.Item>
+          </DropdownButton>
+        </div>
       </header>
-      {/* End Header */}
 
-      {/* ======= Sidebar ======= */}
       <aside
         id="sidebar"
         className="sidebar     "

@@ -1,32 +1,29 @@
- import React from 'react'
- import { Outlet } from 'react-router-dom'
+import React from "react";
+import { Outlet } from "react-router-dom";
 //  import Header from '../Component/Shared/Header'
 //  import AdminSidenav from '../Component/Shared/AdminSidenav'
 
- import AdminSidenavAA from '../Component/Shared/AdminSidenavAA'
- 
- const AdminLayout = () => {
-   return (
+import AdminSidenavAA from "../Component/Shared/AdminSidenavAA";
 
+const AdminLayout = () => {
+  return (
+    <>
 
-   <>
-  
-   {/* <AdminSidenav/> */}
-   
-   <AdminSidenavAA/>
+      <AdminSidenavAA />
 
-<div className="container-fluid" style={{
-          minHeight: '400px',
+      <div
+        className="container-fluid"
+        style={{
+          minHeight: "400px",
           paddingRight: "0",
-          paddingLeft: "2.5rem"
+          paddingLeft: "2.5rem",
           // marginLeft : "0.8rem"
-        }}>
-              <Outlet />
-            </div>
-   
-   </>
+        }}
+      >
+        <Outlet />
+      </div>
+    </>
+  );
+};
 
-   )
- }
- 
- export default AdminLayout
+export default AdminLayout;

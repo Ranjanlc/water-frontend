@@ -62,6 +62,7 @@ import EditInvestment from "../Component/Pages/Investment/EditInvestment";
 import AddProductType from "../Component/Pages/AddProductType/AddProductType";
 import EditProductType from "../Component/Pages/AddProductType/EditProductType";
 import Rinky from "../Component/Pages/Rinky";
+import Login from "../../Auth/Login";
 
 let AdminRoutes = [
   {
@@ -70,17 +71,14 @@ let AdminRoutes = [
   },
 
   // product
-
+  {
+    path: "login",
+    element: <Login />,
+  },
   {
     path: "addnewproduct",
     element: <AddNewProduct />,
   },
-
-  {
-    path: "rinkynateriya",
-    element: <Rinky />,
-  },
-
   {
     path: "addproducttype",
     element: <AddProductType />,
