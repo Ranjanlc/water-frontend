@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../Shared/Img/logo.png";
-import { FaAnchor } from "react-icons/fa";
 
 import "./AdminSidenav.css";
 
@@ -35,7 +34,7 @@ const AdminSidenavAA = () => {
             {isOpen ? (
               <div style={{ marginLeft: "-5px" }}>
                 <i
-                  class="fa-solid fa-bars fs-5 text-dark mt-2 cursor-pointer"
+                  className="fa-solid fa-bars fs-5 text-dark mt-2 cursor-pointer"
                   onClick={openNav}
                   style={{ cursor: "pointer" }}
                 ></i>
@@ -43,7 +42,7 @@ const AdminSidenavAA = () => {
             ) : (
               <div>
                 <i
-                  class="fa-sharp fa-solid fa-xmark fs-5 text-dark mt-2"
+                  className="fa-sharp fa-solid fa-xmark fs-5 text-dark mt-2"
                   style={{ cursor: "pointer" }}
                   onClick={closeNav}
                 ></i>
@@ -63,7 +62,7 @@ const AdminSidenavAA = () => {
         {/* <div className="d-flex justify-content-between ">
           <div onClick={closeNav} className="ms-2">
             <i
-              class="fa-sharp fa-solid fa-xmark  toggle-sidebar-btn mt-1 fs-4"
+              className="fa-sharp fa-solid fa-xmark  toggle-sidebar-btn mt-1 fs-4"
               style={{ marginLeft: "230px" }}
             >
               {" "}
@@ -118,6 +117,12 @@ const AdminSidenavAA = () => {
                 </Link>
               </li>
               <li>
+                <Link className="nav-link " to="stockinout">
+                  <i className="bi bi-circle" />
+                  <span>Stock In Out</span>
+                </Link>
+              </li>
+              <li>
                 <Link className="nav-link " to="checkstockbalance">
                   <i className="bi bi-circle" />
                   <span>Check Stock Balance</span>
@@ -127,12 +132,6 @@ const AdminSidenavAA = () => {
                 <Link className="nav-link " to="fillingstockhistory">
                   <i className="bi bi-circle" />
                   <span>Filling Stock History</span>
-                </Link>
-              </li>
-              <li>
-                <Link className="nav-link " to="stockinout">
-                  <i className="bi bi-circle" />
-                  <span>Stock In Out</span>
                 </Link>
               </li>
             </ul>
@@ -159,7 +158,7 @@ const AdminSidenavAA = () => {
               <li>
                 <Link className="nav-link " to="new_edit_customer">
                   <i className="bi bi-circle" />
-                  <span>New / Edit Customer</span>
+                  <span>Add Customer</span>
                 </Link>
               </li>
               <li>

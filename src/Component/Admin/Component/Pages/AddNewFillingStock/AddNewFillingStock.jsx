@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./AddNewFillingStock.css";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-
 import { useDispatch, useSelector } from "react-redux";
 import {
   addNewfllingStock,
@@ -12,6 +11,7 @@ import {
 import { useSnackbar } from "notistack";
 import { Modal } from "react-bootstrap";
 import Loader from "../../../../Loader/Loader";
+import { getAllNewProduct } from "../../../../../Redux/Features/Products/AddNewProductSlice";
 
 export const AddNewFillingStock = () => {
   const [productName, setProductName] = useState("");
@@ -46,6 +46,10 @@ export const AddNewFillingStock = () => {
     fetchNewProducts();
   }, [fetchNewProducts]);
 
+  useEffect(() => {
+    dispatch(getAllNewProduct(() => {}));
+  }, [dispatch]);
+
   const handleSubmitStock = () => {
     setProductNameError("");
     setFillingStockQuantityError("");
@@ -76,11 +80,9 @@ export const AddNewFillingStock = () => {
         callback: (message) => {
           enqueueSnackbar(message, { variant: "success" });
           fetchNewProducts();
-
           setProductNameError("");
           setFillingStockQuantityError("");
           setDateError("");
-
           setProductName("");
           setFillingStockQuantity("");
           setDate("");
@@ -121,7 +123,7 @@ export const AddNewFillingStock = () => {
         <main id="main" className="main">
           <section className="section">
             <div className=" shadow p-3 mb-5 bg-body rounded  container-fluid c1 mt-0 ">
-              <div className="row">
+              <div className="row d-flex justify-content-between align-items-center">
                 <div className="col-md-7 col-sm-12 ">
                   <h5 className="">
                     <b>Add New Filling Stock</b>
@@ -168,7 +170,7 @@ export const AddNewFillingStock = () => {
                           className="d-flex gap-2 align-items-center"
                           style={{ color: "red" }}
                         >
-                          <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                          <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                           {productNameError}
                         </div>
                       )}
@@ -191,7 +193,7 @@ export const AddNewFillingStock = () => {
                           className="d-flex gap-2 align-items-center"
                           style={{ color: "red" }}
                         >
-                          <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                          <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                           {fillingStockQuantityError}
                         </div>
                       )}
@@ -213,7 +215,7 @@ export const AddNewFillingStock = () => {
                           className="d-flex gap-2 align-items-center"
                           style={{ color: "red" }}
                         >
-                          <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                          <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                           {dateError}
                         </div>
                       )}
@@ -330,7 +332,11 @@ export const AddNewFillingStock = () => {
 
                       <tbody>
                         {filteredProducts?.length === 0 ? (
-                          <td colSpan={8} className="text-center mt-2">
+                          <td
+                            colSpan={8}
+                            className="text-center mt-2"
+                            style={{ color: "#10c2a7" }}
+                          >
                             No Stock Details Found
                           </td>
                         ) : (

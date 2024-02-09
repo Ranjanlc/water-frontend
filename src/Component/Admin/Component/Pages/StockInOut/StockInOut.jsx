@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useSnackbar } from "notistack";
@@ -10,6 +10,7 @@ import {
 import { Modal } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Loader from "../../../../Loader/Loader";
+import { getAllNewProduct } from "../../../../../Redux/Features/Products/AddNewProductSlice";
 
 export const StockInOut = () => {
   const [date, setDate] = useState("");
@@ -24,7 +25,7 @@ export const StockInOut = () => {
   const [quantityError, setQuantityError] = useState("");
   const [stockStatusError, setStockStatusError] = useState("");
   const [remarkError, setRemarkError] = useState("");
-
+  const { allProductData } = useSelector((state) => state.newProduct);
   const dispatch = useDispatch();
   const { allStockInOutData, loading } = useSelector(
     (state) => state.stockInOut
@@ -49,6 +50,10 @@ export const StockInOut = () => {
   useEffect(() => {
     fetchStockInOut();
   }, [fetchStockInOut]);
+
+  useEffect(() => {
+    dispatch(getAllNewProduct(() => {}));
+  }, [dispatch]);
 
   const handleSubmitStockInOut = () => {
     setDateError("");
@@ -147,7 +152,7 @@ export const StockInOut = () => {
         <main id="main" className="main">
           <section className="section">
             <div className=" shadow p-3 mb-5 bg-body rounded  container-fluid c1 mt-0 ">
-              <div className="row">
+              <div className="row d-flex justify-content-between align-items-center">
                 <div className="col-md-7 col-sm-12 ">
                   <h5 className="">
                     <b>Stock In/Out</b>
@@ -163,15 +168,6 @@ export const StockInOut = () => {
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
                   </div>
-                </div>
-                <div className="col-md-1 col-sm-12">
-                  <button
-                    type="button"
-                    className="btn btn-danger 
-                py-1"
-                  >
-                    Search
-                  </button>
                 </div>
               </div>
               <hr style={{ backgroundColor: "black" }} />
@@ -195,7 +191,7 @@ export const StockInOut = () => {
                           className="d-flex gap-2 align-items-center"
                           style={{ color: "red" }}
                         >
-                          <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                          <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                           {dateError}
                         </div>
                       )}
@@ -223,7 +219,7 @@ export const StockInOut = () => {
                           className="d-flex gap-2 align-items-center"
                           style={{ color: "red" }}
                         >
-                          <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                          <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                           {salesmanError}
                         </div>
                       )}
@@ -231,7 +227,7 @@ export const StockInOut = () => {
                   </div>
                   <div className="col-md-4">
                     <div className="form-group ">
-                      <label>Product</label>
+                      <label>Select Product Name</label>
                       <select
                         className="form-select c2"
                         aria-label="Default select example"
@@ -242,16 +238,19 @@ export const StockInOut = () => {
                         }}
                       >
                         <option selected="">Select</option>
-                        <option>Disposal Bottel</option>
-                        <option>20 Gallon Water Bottles</option>
-                        <option>Ice Product</option>
+                        {allProductData &&
+                          allProductData.map((data, i) => (
+                            <option value={data.productName} key={i}>
+                              {data.productName}
+                            </option>
+                          ))}
                       </select>
                       {productError && (
                         <div
                           className="d-flex gap-2 align-items-center"
                           style={{ color: "red" }}
                         >
-                          <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                          <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                           {productError}
                         </div>
                       )}
@@ -276,7 +275,7 @@ export const StockInOut = () => {
                           className="d-flex gap-2 align-items-center"
                           style={{ color: "red" }}
                         >
-                          <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                          <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                           {quantityError}
                         </div>
                       )}
@@ -299,13 +298,14 @@ export const StockInOut = () => {
                         <option>STOCK OUT (Fill)</option>
                         <option>STOCK IN (Empty)</option>
                         <option>STOCK OUT (Empty)</option>
+                        <option>DAMAGE</option>
                       </select>
                       {stockStatusError && (
                         <div
                           className="d-flex gap-2 align-items-center"
                           style={{ color: "red" }}
                         >
-                          <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                          <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                           {stockStatusError}
                         </div>
                       )}
@@ -328,7 +328,7 @@ export const StockInOut = () => {
                           className="d-flex gap-2 align-items-center"
                           style={{ color: "red" }}
                         >
-                          <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                          <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                           {remarkError}
                         </div>
                       )}
@@ -425,7 +425,11 @@ export const StockInOut = () => {
                       </thead>
                       <tbody>
                         {filteredStockInOut?.length === 0 ? (
-                          <td colSpan={8} className="text-center mt-2">
+                          <td
+                            colSpan={8}
+                            className="text-center mt-2"
+                            style={{ color: "#10c2a7" }}
+                          >
                             No Stock Details Found
                           </td>
                         ) : (

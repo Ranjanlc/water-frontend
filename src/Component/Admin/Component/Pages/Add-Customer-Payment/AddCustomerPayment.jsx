@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./AddCustomerPayment.css";
 import Button from "react-bootstrap/Button";
@@ -24,7 +24,6 @@ export const AddCustomerPayment = () => {
   const [taxDiscount, setTaxDiscount] = useState("");
   const [chequeNo, setChequeNo] = useState("");
   const [remarks, setRemarks] = useState("");
-
   const [accountError, setAccountError] = useState("");
   const [customerNameError, setCustomerNameError] = useState("");
   const [balanceBottleError, setBalanceBottleError] = useState("");
@@ -198,7 +197,7 @@ export const AddCustomerPayment = () => {
         <main id="main" className="main">
           <section className="section">
             <div className=" shadow p-3 mb-5 bg-body rounded  container-fluid c1 mt-0 ">
-              <div className="row">
+              <div className="row d-flex justify-content-between align-items-center">
                 <div className="col-md-7 col-sm-12 ">
                   <h5 className="">
                     <b>Add Customer Payment</b>
@@ -240,7 +239,7 @@ export const AddCustomerPayment = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {accountError}
                       </div>
                     )}
@@ -263,7 +262,7 @@ export const AddCustomerPayment = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {customerNameError}
                       </div>
                     )}
@@ -286,7 +285,7 @@ export const AddCustomerPayment = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {balanceBottleError}
                       </div>
                     )}
@@ -309,7 +308,7 @@ export const AddCustomerPayment = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {balanceAmountError}
                       </div>
                     )}
@@ -338,7 +337,7 @@ export const AddCustomerPayment = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {paymentReceiverError}
                       </div>
                     )}
@@ -362,7 +361,7 @@ export const AddCustomerPayment = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {paymentDateError}
                       </div>
                     )}
@@ -391,7 +390,7 @@ export const AddCustomerPayment = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {paymentModeError}
                       </div>
                     )}
@@ -414,7 +413,7 @@ export const AddCustomerPayment = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {paymentReceivedError}
                       </div>
                     )}
@@ -437,7 +436,7 @@ export const AddCustomerPayment = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {taxDiscountError}
                       </div>
                     )}
@@ -460,7 +459,7 @@ export const AddCustomerPayment = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {chequeNoError}
                       </div>
                     )}
@@ -483,7 +482,7 @@ export const AddCustomerPayment = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {remarksError}
                       </div>
                     )}
@@ -643,7 +642,11 @@ export const AddCustomerPayment = () => {
 
                         <tbody>
                           {filteredCustomers?.length === 0 ? (
-                            <td colSpan={8} className="text-center mt-2">
+                            <td
+                              colSpan={8}
+                              className="text-center mt-2"
+                              style={{ color: "#10c2a7" }}
+                            >
                               No Customer Payment Found
                             </td>
                           ) : (

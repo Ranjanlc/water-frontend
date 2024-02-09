@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./AddNewProduct.css";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
@@ -119,22 +119,18 @@ const AddNewProduct = () => {
         <main id="main" className="main">
           <section className="section">
             <div className=" shadow p-3 mb-5 bg-body rounded  container-fluid c1 mt-0 ">
-              {/* <h5 className="d-inline">
-              <b>New Product</b>
-            </h5> */}
-              <div className="row">
+              <div className="row d-flex justify-content-between align-items-center">
                 <div className="col-md-7 col-sm-12 ">
                   <h5 className="">
                     <b>New Product</b>
                   </h5>
                 </div>
-                <div className="col-md-3 col-sm-12">
+                <div className="col-md-4 col-sm-12">
                   <div className="form-group ">
-                    {/* <label>Search by ID or Name</label> */}
                     <input
                       type="search"
                       className="form-control"
-                      placeholder="Search"
+                      placeholder="Search Product Name"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
@@ -164,7 +160,7 @@ const AddNewProduct = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {productNameError}
                       </div>
                     )}
@@ -186,29 +182,35 @@ const AddNewProduct = () => {
                         className="d-flex gap-2 align-items-center"
                         style={{ color: "red" }}
                       >
-                        <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                         {priceError}
                       </div>
                     )}
-                    <div class="form-check form-check-inline mt-1">
+                    <div className="form-check form-check-inline mt-1">
                       <input
-                        class="form-check-input"
+                        className="form-check-input"
                         type="checkbox"
                         id="inlineCheckbox1"
                         value="option1"
                       />
-                      <label class="form-check-label" for="inlineCheckbox1">
+                      <label
+                        className="form-check-label"
+                        htmlFor="inlineCheckbox1"
+                      >
                         Price USD
                       </label>
                     </div>
-                    <div class="form-check form-check-inline">
+                    <div className="form-check form-check-inline">
                       <input
-                        class="form-check-input"
+                        className="form-check-input"
                         type="checkbox"
                         id="inlineCheckbox2"
                         value="option2"
                       />
-                      <label class="form-check-label" for="inlineCheckbox2">
+                      <label
+                        className="form-check-label"
+                        htmlFor="inlineCheckbox2"
+                      >
                         Price SHS
                       </label>
                     </div>
@@ -240,7 +242,7 @@ const AddNewProduct = () => {
                           className="d-flex gap-2 align-items-center"
                           style={{ color: "red" }}
                         >
-                          <i class="fa-sharp fa-solid fa-circle-exclamation"></i>
+                          <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
                           {typeError}
                         </div>
                       )}
@@ -279,9 +281,9 @@ const AddNewProduct = () => {
                           </th>
                           <th
                             scope="col"
+                            className="text-center"
                             style={{
-                              paddingLeft: "3rem",
-                              textAlign: "center",
+                              paddingLeft: "4rem",
                               whiteSpace: "nowrap",
                             }}
                           >
@@ -289,15 +291,16 @@ const AddNewProduct = () => {
                           </th>
                           <th
                             scope="col"
-                            style={{ paddingLeft: "2rem", textAlign: "center" }}
+                            className="text-center"
+                            style={{ paddingLeft: "3rem" }}
                           >
                             Price
                           </th>
                           <th
                             scope="col"
+                            className="text-center"
                             style={{
-                              paddingLeft: "3rem",
-                              textAlign: "center",
+                              paddingLeft: "2rem",
                               whiteSpace: "nowrap",
                             }}
                           >
@@ -310,8 +313,12 @@ const AddNewProduct = () => {
                       </thead>
                       <tbody>
                         {filteredProducts?.length === 0 ? (
-                          <td colSpan={8} className="text-center mt-2">
-                            No Products Found
+                          <td
+                            colSpan={10}
+                            className="text-center mt-2"
+                            style={{ color: "#10c2a7" }}
+                          >
+                            No Products Details Found!!
                           </td>
                         ) : (
                           <>
