@@ -106,7 +106,7 @@ const initialState = {
 
 
 const CustomerLedgerSlice = createSlice ({
-    name :"CustomerSecurityAmount",
+    name :"CustomerLedger",
     initialState,
     reducers:{
         createCustomerLedgerRequest: (state) => {

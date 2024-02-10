@@ -10,6 +10,9 @@ import StockInOutReducer from "./Products/StockInOutSlice";
 import AddNewCustomerReducer from "./Customer/AddNewCustomerSlice";
 import AddVendorPaymentReducer from "./Vendor/AddVendorPaymentSlice";
 import CustomerBalanceSheetReducer from "./Customer/CustomerBalanceSheetSlice";
+import AddNewEmployeeReducer from "./Employee/AddNewEmployeeSlice";
+import SetproductionPriceReducer from "./Customer/SetProductionPriceSlice";
+
 
 const rootReducer = combineReducers({
     newProduct: AddNewProductReducer,
@@ -22,7 +25,10 @@ const rootReducer = combineReducers({
     customerLedger: CustomerLedgerReducer,
     newCustomer: AddNewCustomerReducer,
     addVendorPayment: AddVendorPaymentReducer,
-    addBalanceSheet: CustomerBalanceSheetReducer
+    addBalanceSheet: CustomerBalanceSheetReducer,
+    addNewEmployee : AddNewEmployeeReducer,
+    setproductionPrice: SetproductionPriceReducer
+
 })
 const store = configureStore({
     reducer: rootReducer,

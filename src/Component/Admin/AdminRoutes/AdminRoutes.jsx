@@ -182,7 +182,7 @@ let AdminRoutes = [
     element: <SetProductionPrice />,
   },
   {
-    path: "/admin/edit_production_price",
+    path: "/admin/edit_production_price/:id",
     element: <EditSetProductionPrice />,
   },
 
@@ -243,7 +243,7 @@ let AdminRoutes = [
     element: <AddNewEmployee />,
   },
   {
-    path: "/admin/editemployee",
+    path: "/admin/editemployee/:id",
     element: <EditEmployee />,
   },
 

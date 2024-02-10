@@ -109,7 +109,7 @@ const initialState = {
 }
 
 const AddNewEmployeeSlice =  createSlice({
-    name :"StockInOut",
+    name :"NewEmployee",
     initialState,
     reducers:{
         createNewEmployeeRequest: (state) => {

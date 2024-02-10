@@ -276,7 +276,7 @@ export const AddNewEmployee = () => {
                   <input
                     type="date"
                     className="form-control c2 mt-1"
-                    placeholder="Enter Order Number"
+                    placeholder="Enter Join Date"
                     value={joinDate}
                     onChange={(e) => {
                       setJoinDate(e.target.value);
@@ -296,11 +296,11 @@ export const AddNewEmployee = () => {
               </div>
               <div className="col-md-3">
                 <div className="form-group">
-                  <label> Adress</label>
+                  <label> Address</label>
                   <input
                     type="text"
                     className="form-control c2 mt-1"
-                    placeholder="Enter Adress"
+                    placeholder="Enter Address"
                     value={address}
                     onChange={(e) => {
                       setAddress(e.target.value);
@@ -410,7 +410,8 @@ export const AddNewEmployee = () => {
                       setAccountStatusError("");
                     }}
                   >
-                    <option selected>Active</option>
+                    <option selected >Select</option>
+                    <option >Active</option>
                     <option >Deactive</option>
                   </select>
                   {accountStatusError && (
@@ -544,7 +545,7 @@ export const AddNewEmployee = () => {
                         <th
                           scope="col"
                           style={{
-                            paddingLeft: "3rem",
+                            paddingLeft: "2rem",
                             textAlign: "center",
                             whiteSpace: "nowrap",
                           }}
@@ -569,7 +570,7 @@ export const AddNewEmployee = () => {
                             whiteSpace: "nowrap",
                           }}
                         >
-                          Adress
+                          Address
                         </th>
                         <th
                           scope="col"
@@ -584,7 +585,7 @@ export const AddNewEmployee = () => {
                         <th
                           scope="col"
                           style={{
-                            paddingLeft: "3rem",
+                            paddingLeft: "2rem",
                             textAlign: "center",
                             whiteSpace: "nowrap",
                           }}
@@ -594,7 +595,7 @@ export const AddNewEmployee = () => {
                         <th
                           scope="col"
                           style={{
-                            paddingLeft: "3rem",
+                            paddingLeft: "1rem",
                             textAlign: "center",
                             whiteSpace: "nowrap",
                           }}
@@ -604,7 +605,7 @@ export const AddNewEmployee = () => {
                         <th
                           scope="col"
                           style={{
-                            paddingLeft: "3rem",
+                            paddingLeft: "1rem",
                             textAlign: "center",
                             whiteSpace: "nowrap",
                           }}
@@ -614,7 +615,7 @@ export const AddNewEmployee = () => {
                         <th
                           scope="col"
                           style={{
-                            paddingLeft: "3rem",
+                            paddingLeft: "1.4rem",
                             textAlign: "center",
                             whiteSpace: "nowrap",
                           }}
@@ -624,14 +625,14 @@ export const AddNewEmployee = () => {
                         <th
                           scope="col"
                           style={{
-                            paddingLeft: "3rem",
+                            paddingLeft: "1rem",
                             textAlign: "center",
                             whiteSpace: "nowrap",
                           }}
                         >
                           Salary Pay To(Account)
                         </th>
-                        <th scope="col " style={{ paddingLeft: "3rem" }}>
+                        <th scope="col " style={{ paddingLeft: "2rem" }}>
                           Action
                         </th>
                       </tr>
@@ -647,29 +648,29 @@ export const AddNewEmployee = () => {
                       <tr>
                         <td
                           className="text-center"
-                          style={{ paddingLeft: "4rem" }}
+                          style={{ paddingLeft: "3rem" }}
                         >
                          {addEmployee.firstName}
                         </td>
                         <td
                           className="text-center"
-                          style={{ paddingLeft: "3rem", whiteSpace: "nowrap" }}
+                          style={{ paddingLeft: "1rem", whiteSpace: "nowrap" }}
                         >
                          {addEmployee.lastName}
                         </td>
-                        <td className="text-center" style={{ paddingLeft: 29 }}>
+                        <td className="text-center" style={{ paddingLeft: "1.3rem" }}>
                         {addEmployee.joinDate}
                         </td>
-                        <td className="text-center">{addEmployee.address}</td>
-                        <td className="text-center">{addEmployee.employeeDesignation}</td>
-                        <td className="text-center">{addEmployee.nic}</td>
-                        <td className="text-center">{addEmployee.contact}</td>
-                        <td className="text-center">{addEmployee.status}</td>
-                        <td className="text-center">{addEmployee.salary}</td>
-                        <td className="text-center">{addEmployee.salaryPayTo}</td>
+                        <td className="text-center" style={{ paddingLeft: "3rem"}} >{addEmployee.address}</td>
+                        <td className="text-center" style={{ paddingLeft: "2rem" }}>{addEmployee.employeeDesignation}</td>
+                        <td className="text-center" style={{ paddingLeft: "2rem" }}>{addEmployee.nic}</td>
+                        <td className="text-center" style={{ paddingLeft: "2rem" }}>{addEmployee.contact}</td>
+                        <td className="text-center" style={{ paddingLeft: "2rem" }}>{addEmployee.status}</td>
+                        <td className="text-center" style={{ paddingLeft: "2rem" }}>{addEmployee.salary}</td>
+                        <td className="text-center" style={{ paddingLeft: "1rem" }}>{addEmployee.salaryPayTo}</td>
                         <td
                           className="text-center"
-                          style={{ paddingLeft: "3rem" }}
+                          style={{ paddingLeft: "1.5rem" }}
                         >
                           <div className="parent_div ">
                             <div
