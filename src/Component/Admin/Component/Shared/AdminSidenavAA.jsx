@@ -257,7 +257,7 @@ const AdminSidenavAA = () => {
               <li>
                 <Link className="nav-link " to="vendor">
                   <i className="bi bi-circle" />
-                  <span>Vendor</span>
+                  <span>Add Vendor</span>
                 </Link>
               </li>
               <li>
