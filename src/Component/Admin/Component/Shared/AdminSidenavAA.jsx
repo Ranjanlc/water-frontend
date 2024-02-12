@@ -402,7 +402,7 @@ const AdminSidenavAA = () => {
                 style={{ color: "#0f2243" }}
               />
               <span className="me-1" style={{ whiteSpace: "nowrap" }}>
-                Transaction
+                Transection
               </span>
               <i className="bi bi-chevron-down ms-auto" />
             </a>
@@ -443,8 +443,8 @@ const AdminSidenavAA = () => {
                 className="fa-sharp fa-regular fa-code-branch"
                 style={{ color: "#274a8b" }}
               ></i>
-              <span className="me-1" style={{ whiteSpace: "nowrap" }}>
-                Branches
+              <span className="me-1 ms-1" style={{ whiteSpace: "nowrap" }}>
+                 Branches
               </span>
               <i className="bi bi-chevron-down ms-auto" />
             </a>

@@ -327,7 +327,7 @@ let AdminRoutes = [
     element: <AddNewBank />,
   },
   {
-    path: "/admin/edit_bank",
+    path: "/admin/edit_bank/:id",
     element: <EditBank />,
   },
 
