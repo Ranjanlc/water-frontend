@@ -12,6 +12,7 @@ import AddVendorPaymentReducer from "./Vendor/AddVendorPaymentSlice";
 import CustomerBalanceSheetReducer from "./Customer/CustomerBalanceSheetSlice";
 import AddNewEmployeeReducer from "./Employee/AddNewEmployeeSlice";
 import SetproductionPriceReducer from "./Customer/SetProductionPriceSlice";
+import VendorReducer from "./Vendor/VendorSlice";
 
 
 const rootReducer = combineReducers({
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
     addVendorPayment: AddVendorPaymentReducer,
     addBalanceSheet: CustomerBalanceSheetReducer,
     addNewEmployee : AddNewEmployeeReducer,
-    setproductionPrice: SetproductionPriceReducer
+    setproductionPrice: SetproductionPriceReducer,
+    vendor : VendorReducer,
 
 })
 const store = configureStore({

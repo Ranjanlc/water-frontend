@@ -219,7 +219,7 @@ let AdminRoutes = [
     element: <Vendor />,
   },
   {
-    path: "/admin/editvendorform",
+    path: "/admin/editvendorform/:id",
     element: <EditVendorfrom />,
   },
 
