@@ -210,7 +210,7 @@ let AdminRoutes = [
     element: <PurchaseOrderVendor />,
   },
   {
-    path: "/admin/purchaseordervendorform",
+    path: "/admin/purchaseordervendorform/:id",
     element: <PurchaseOrderVendorform />,
   },
 
