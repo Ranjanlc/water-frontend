@@ -1,11 +1,144 @@
-import React from 'react'
+import React, { useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useSnackbar } from "notistack";
 import './Investment.css'
-import { Link } from 'react-router-dom'
-import { TbGitBranchDeleted } from "react-icons/tb";
+// import { TbGitBranchDeleted } from "react-icons/tb";
+
+import { addInvestment, getAllInvestment, deleteInvestment } from "../../../../../Redux/Features/Expenditure/InvestmentSlice";
+
+import { Modal } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Loader from "../../../../Loader/Loader";
 
 const Investment = () => {
+
+    const [investor, setInvestor] = useState();
+    const [investmentDetail, setInvestmentDetail] = useState();
+    const [amount, setAmount] = useState();
+    const [date, setDate] = useState();
+
+    const [investorError, setInvestorError] = useState();
+    const [investmentDetailError, setInvestmentDetailError] = useState();
+    const [amountError, setAmountError] = useState();
+    const [dateError, setDateError] = useState();
+
+    const dispatch = useDispatch();
+    const { allInvestmentData, loading } = useSelector(
+      (state) => state.addinvestment
+    );
+
+    const { enqueueSnackbar } = useSnackbar();
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [selectedRow, setSelectedRow] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const fetchInvestment = useCallback(() => {
+    dispatch(
+      getAllInvestment((message) => {
+        console.log(message);
+      })
+    );
+  }, [dispatch]);
+
+  useEffect(() => {
+    fetchInvestment();
+  }, [fetchInvestment]);
+
+  const handleSubmitInvestment = () => {
+    setInvestorError("");
+    setInvestmentDetailError("");
+    setAmountError("");
+    setDateError("");
+    
+    if (!investor) {
+        setInvestorError("Investor Name is Required!!");
+        return;
+      }
+      if (!investmentDetail) {
+        setInvestmentDetailError("Investment Detail is Required!!");
+        return;
+      }
+      if (!amount) {
+        setAmountError("Amount Detail is Required!!");
+        return;
+      }
+    if (!date) {
+      setDateError("Date is Required!!");
+      return;
+    }
+  
+
+    let payload = {
+        investorName: investor,
+        investmentDetail: investmentDetail,
+        amount: amount,
+        date: date,
+    };
+
+    dispatch(
+      addInvestment({
+        payload: payload,
+        callback: (message) => {
+          enqueueSnackbar(message, { variant: "success" });
+          fetchInvestment();
+          setInvestor("");
+          setInvestmentDetail("");
+          setAmount("");
+          setDate("");
+          
+          setInvestorError("");
+          setInvestmentDetailError("");
+          setAmountError("");
+          setDateError("");
+        },
+      })
+    );
+  };
+
+  const HandleOpenModal = (id) => {
+    setSelectedRow(id);
+    handleShow();
+  };
+
+  const investmentDeleteHandler = () => {
+    dispatch(
+      deleteInvestment({
+        id: selectedRow,
+        callback: (message) => {
+          enqueueSnackbar(message, { variant: "success" });
+          fetchInvestment();
+          handleClose();
+        },
+      })
+    );
+  };
+
+//   const filteredInvestment = allInvestmentData?.filter((investment) =>
+//   investment.investorName.toLowerCase().includes(searchTerm.toLowerCase())
+// );
+const filteredInvestor = allInvestmentData?.filter((investment) =>
+investment.investorName?.toLowerCase().includes(searchTerm.toLowerCase())
+);
+console.log(allInvestmentData);
+
+// const data = async=()=>{
+//         return QueryParametr =  allInvestmentData?.filter((investment) =>
+//         investment.investorName.toLowerCase().includes(searchTerm.toLowerCase())
+//         );
+// }
+
+
     return (
         <>
+        {loading ? (
+        <>
+          <Loader />
+        </>
+      ) : (
 
             <main id="main" className="main">
                 <section className="section">
@@ -23,12 +156,13 @@ const Investment = () => {
                                         type="search"
                                         className="form-control   "
                                         placeholder="Search"
+                                        value={searchTerm}
+                                        onChange={(e) => setSearchTerm(e.target.value)}
                                     />
                                 </div>
                             </div>
                             <div className='col-md-1 col-sm-12'>
-                                <button type="button" className="btn btn-danger 
-                py-1">
+                                <button type="button" className="btn btn-danger py-1">
                                     Search
                                 </button>
                             </div>
@@ -43,46 +177,107 @@ const Investment = () => {
                         <div className="row">
                             <div className=" col-sm-12  col-md-3 " style={{ lineHeight: "1rem" }}>
                                 <label style={{ marginTop: "1.3rem" }} htmlFor="specificSizeSelect">
-                                    Customer Name:
+                                Investor Name
                                 </label>
-                                <input type="text" className="form-control a1" placeholder="Name" />
+                                <input type="text" className="form-control a1" placeholder="Investor Name"
+                                value={investor}
+                                onChange={(e) => {
+                                  setInvestor(e.target.value);
+                                  setInvestorError("");
+                                }}
+                              />
+                              {investorError && (
+                                <div
+                                  className="d-flex gap-2 align-items-center"
+                                  style={{ color: "red" }}
+                                >
+                                  <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
+                                  {investorError}
+                                </div>
+                              )}
                             </div>
                             <div className=" col-sm-12  col-md-3 " style={{ lineHeight: "1rem" }}>
                                 <label style={{ marginTop: "1.3rem" }} htmlFor="specificSizeSelect">
-                                    Investment Detail:
+                                    Investment Detail
                                 </label>
                                 <input
                                     type="text"
                                     className="form-control a1"
                                     placeholder="Enter discription"
-                                />
+                                    value={investmentDetail}
+                                onChange={(e) => {
+                                  setInvestmentDetail(e.target.value);
+                                  setInvestmentDetailError("");
+                                }}
+                              />
+                              {investmentDetailError && (
+                                <div
+                                  className="d-flex gap-2 align-items-center"
+                                  style={{ color: "red" }}
+                                >
+                                  <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
+                                  {investmentDetailError}
+                                </div>
+                              )}
                             </div>
                             <div className=" col-sm-12  col-md-3 " style={{ lineHeight: "1rem" }}>
                                 <label style={{ marginTop: "1.3rem" }} htmlFor="specificSizeSelect">
-                                    Amount:
+                                    Amount
                                 </label>
                                 <input
                                     type="number"
                                     className="form-control a1"
                                     placeholder="Enter amount"
-                                />
+                                    value={amount}
+                                    onChange={(e) => {
+                                        setAmount(e.target.value);
+                                        setAmountError("");
+                                      }}
+                                    />
+                                    {amountError && (
+                                      <div
+                                        className="d-flex gap-2 align-items-center"
+                                        style={{ color: "red" }}
+                                      >
+                                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
+                                        {amountError}
+                                      </div>
+                                    )}
                             </div>
                             <div className=" col-sm-12  col-md-3 " style={{ lineHeight: "1rem" }}>
                                 <label style={{ marginTop: "1.3rem" }} htmlFor="specificSizeSelect">
-                                    Date:
+                                    Date
                                 </label>
                                 <input
                                     type="date"
                                     className="form-control a1"
                                     placeholder="Enter amount"
-                                />
+                                    value={date}
+                                    onChange={(e) => {
+                                        setDate(e.target.value);
+                                        setDateError("");
+                                      }}
+                                    />
+                                    {dateError && (
+                                      <div
+                                        className="d-flex gap-2 align-items-center"
+                                        style={{ color: "red" }}
+                                      >
+                                        <i className="fa-sharp fa-solid fa-circle-exclamation"></i>
+                                        {dateError}
+                                      </div>
+                                    )}
+                               
                             </div>
                             <div className=" d-flex justify-content-center mt-4">
                                 {/* <button className="button py-1 ">
                                     <span>Save New Investment</span>
                                 </button> */}
 
-                                <button type="button" class="btn btn-success" style={{ backgroundColor: 'rgb(26, 156, 128)' }}>Save New Investment</button>
+                                <button type="button" class="btn btn-success"
+                                 style={{ backgroundColor: 'rgb(26, 156, 128)' }}
+                                 onClick={handleSubmitInvestment}
+                                 >Save New Investment</button>
 
                             </div>
                         </div>
@@ -92,13 +287,13 @@ const Investment = () => {
                         <div className="row mt-3">
                             <div className=" col-md-3 col-sm-12" style={{ lineHeight: "2rem" }}>
                                 <label className="" htmlFor="specificSizeSelect">
-                                    From Date:
+                                    From Date
                                 </label>
                                 <input type="date" className="form-control c2" placeholder="" />
                             </div>
                             <div className="  col-md-3 col-sm-12" style={{ lineHeight: "2rem" }}>
                                 <label className="" htmlFor="specificSizeSelect">
-                                    To Date:
+                                    To Date
                                 </label>
                                 <input
                                     type="date"
@@ -155,7 +350,7 @@ const Investment = () => {
                                                         whiteSpace: "nowrap"
                                                     }}
                                                 >
-                                                    Invester Name
+                                                    Investor Name
                                                 </th>
                                                 <th
                                                     scope="col"
@@ -179,24 +374,35 @@ const Investment = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                        {filteredInvestor?.length === 0 ? (
+                          <td
+                            colSpan={8}
+                            className="text-center mt-2"
+                            style={{ color: "#10c2a7" }}
+                          >
+                            No Stock Details Found
+                          </td>
+                        ) : (
+                          <>
+                            {filteredInvestor?.map((newInvestment, i) => (
+                                            <tr key={i}>
                                                 <td className="text-center" style={{ paddingLeft: "4rem" }}>
-                                                    1
+                                                {i + 1}
                                                 </td>
                                                 <td
                                                     className="text-center"
                                                     style={{ paddingLeft: "3rem", whiteSpace: "nowrap" }}
                                                 >
-                                                    25-12-2023
+                                                   {newInvestment.date}
                                                 </td>
                                                 <td className="text-center" style={{ paddingLeft: "3rem" }}>
-                                                    ABC
+                                                {newInvestment.investorName}
                                                 </td>
                                                 <td className="text-center" style={{ paddingLeft: "3rem" }}>
-                                                    JDFJKD
+                                                {newInvestment.investmentDetail}
                                                 </td>
                                                 <td className="text-center" style={{ paddingLeft: "6rem" }}>
-                                                    1000
+                                                {newInvestment.amount}
                                                 </td>
                                                 <td className="text-center" style={{ paddingLeft: "3rem" }}>
                                                     <div className="parent_div ">
@@ -205,7 +411,9 @@ const Investment = () => {
                                                             className="edit_icon"
                                                             aria-label="Example icon button with a menu icon"
                                                         >
-                                                            <Link to="/admin/EditInvestment" style={{ textDecoration: "none" }} >
+                                                            <Link
+                                                            to={`/admin/EditInvestment/${newInvestment._id}`}
+                                                              style={{ textDecoration: "none" }} >
                                                                 <i className="ri-pencil-line" />
                                                             </Link>
                                                         </div>
@@ -214,91 +422,19 @@ const Investment = () => {
                                                             className="delete_icon"
                                                             aria-label="Example icon button with a menu icon"
                                                         >
-                                                            <i className="ri-delete-bin-6-line " />
+                                                            <i className="ri-delete-bin-6-line " 
+                                                             onClick={() => {
+                                                                HandleOpenModal(newInvestment?._id);
+                                                              }}
+                                                            />
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td className="text-center" style={{ paddingLeft: "4rem" }}>
-                                                    1
-                                                </td>
-                                                <td
-                                                    className="text-center"
-                                                    style={{ paddingLeft: "3rem", whiteSpace: "nowrap" }}
-                                                >
-                                                    25-12-2023
-                                                </td>
-                                                <td className="text-center" style={{ paddingLeft: "3rem" }}>
-                                                    ABC
-                                                </td>
-                                                <td className="text-center" style={{ paddingLeft: "3rem" }}>
-                                                    JDFJKD
-                                                </td>
-                                                <td className="text-center" style={{ paddingLeft: "6rem" }}>
-                                                    1000
-                                                </td>
-                                                <td className="text-center" style={{ paddingLeft: "3rem" }}>
-                                                    <div className="parent_div ">
-                                                        <div
-                                                            style={{ cursor: "pointer" }}
-                                                            className="edit_icon"
-                                                            aria-label="Example icon button with a menu icon"
-                                                        >
-                                                            <Link to="/admin/EditInvestment" style={{ textDecoration: "none" }} >
-                                                                <i className="ri-pencil-line" />
-                                                            </Link>
-                                                        </div>
-                                                        <div
-                                                            style={{ cursor: "pointer" }}
-                                                            className="delete_icon"
-                                                            aria-label="Example icon button with a menu icon"
-                                                        >
-                                                            <i className="ri-delete-bin-6-line " />
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="text-center" style={{ paddingLeft: "4rem" }}>
-                                                    1
-                                                </td>
-                                                <td
-                                                    className="text-center"
-                                                    style={{ paddingLeft: "3rem", whiteSpace: "nowrap" }}
-                                                >
-                                                    25-12-2023
-                                                </td>
-                                                <td className="text-center" style={{ paddingLeft: "3rem" }}>
-                                                    ABC
-                                                </td>
-                                                <td className="text-center" style={{ paddingLeft: "3rem" }}>
-                                                    JDFJKD
-                                                </td>
-                                                <td className="text-center" style={{ paddingLeft: "6rem" }}>
-                                                    1000
-                                                </td>
-                                                <td className="text-center" style={{ paddingLeft: "3rem" }}>
-                                                    <div className="parent_div ">
-                                                        <div
-                                                            style={{ cursor: "pointer" }}
-                                                            className="edit_icon"
-                                                            aria-label="Example icon button with a menu icon"
-                                                        >
-                                                            <Link to="/admin/EditInvestment" style={{ textDecoration: "none" }} >
-                                                                <i className="ri-pencil-line" />
-                                                            </Link>
-                                                        </div>
-                                                        <div
-                                                            style={{ cursor: "pointer" }}
-                                                            className="delete_icon"
-                                                            aria-label="Example icon button with a menu icon"
-                                                        >
-                                                            <i className="ri-delete-bin-6-line " />
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                              ))}
+                                              </>
+                                            )}
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -317,6 +453,23 @@ const Investment = () => {
                     </div>
                 </section>
             </main>
+
+)}
+
+<Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Investor</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={investmentDeleteHandler}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
         </>
     )

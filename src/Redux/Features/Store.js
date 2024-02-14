@@ -15,6 +15,7 @@ import SetproductionPriceReducer from "./Customer/SetProductionPriceSlice";
 import VendorReducer from "./Vendor/VendorSlice";
 import AddNewBankReducer from "./Transection/AddNewBankSlice";
 import PurchaseOrderVendorReducer from "./Vendor/PurchaseOrderVendorSlice";
+import InvestmentReducer from "./Expenditure/InvestmentSlice"
 
 
 const rootReducer = combineReducers({
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
     vendor : VendorReducer,
     addNewBank : AddNewBankReducer,
     purchaseordervendors : PurchaseOrderVendorReducer,
+    addinvestment : InvestmentReducer,
 
 })
 const store = configureStore({

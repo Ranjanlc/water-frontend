@@ -26,6 +26,7 @@ export const StockInOut = () => {
   const [quantityError, setQuantityError] = useState("");
   const [stockStatusError, setStockStatusError] = useState("");
   const [remarkError, setRemarkError] = useState("");
+  
   const { allProductData } = useSelector((state) => state.newProduct);
   const dispatch = useDispatch();
   const { allStockInOutData, loading } = useSelector(
