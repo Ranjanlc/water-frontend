@@ -308,7 +308,7 @@ let AdminRoutes = [
     element: <Expenditure />,
   },
   {
-    path: "/admin/EditExpenditurefrom",
+    path: "/admin/editexpenditureform/:id",
     element: <EditExpenditurefrom />,
   },
 

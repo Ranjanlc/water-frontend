@@ -16,6 +16,7 @@ import VendorReducer from "./Vendor/VendorSlice";
 import AddNewBankReducer from "./Transection/AddNewBankSlice";
 import PurchaseOrderVendorReducer from "./Vendor/PurchaseOrderVendorSlice";
 import InvestmentReducer from "./Expenditure/InvestmentSlice"
+import ExpenditureReducer from "./Expenditure/ExpenditureSlice";
 
 
 const rootReducer = combineReducers({
@@ -30,13 +31,13 @@ const rootReducer = combineReducers({
     newCustomer: AddNewCustomerReducer,
     addVendorPayment: AddVendorPaymentReducer,
     addBalanceSheet: CustomerBalanceSheetReducer,
-    addNewEmployee : AddNewEmployeeReducer,
+    addNewEmployee: AddNewEmployeeReducer,
     setproductionPrice: SetproductionPriceReducer,
-    vendor : VendorReducer,
-    addNewBank : AddNewBankReducer,
-    purchaseordervendors : PurchaseOrderVendorReducer,
-    addinvestment : InvestmentReducer,
-
+    vendor: VendorReducer,
+    addNewBank: AddNewBankReducer,
+    purchaseordervendors: PurchaseOrderVendorReducer,
+    addinvestment: InvestmentReducer,
+    expenditure: ExpenditureReducer
 })
 const store = configureStore({
     reducer: rootReducer,
