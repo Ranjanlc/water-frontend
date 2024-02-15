@@ -13,15 +13,15 @@ import Loader from "../../../../Loader/Loader";
 
 const Investment = () => {
 
-    const [investor, setInvestor] = useState();
-    const [investmentDetail, setInvestmentDetail] = useState();
-    const [amount, setAmount] = useState();
-    const [date, setDate] = useState();
+    const [investor, setInvestor] = useState("");
+    const [investmentDetail, setInvestmentDetail] = useState("");
+    const [amount, setAmount] = useState("");
+    const [date, setDate] = useState("");
 
-    const [investorError, setInvestorError] = useState();
-    const [investmentDetailError, setInvestmentDetailError] = useState();
-    const [amountError, setAmountError] = useState();
-    const [dateError, setDateError] = useState();
+    const [investorError, setInvestorError] = useState("");
+    const [investmentDetailError, setInvestmentDetailError] = useState("");
+    const [amountError, setAmountError] = useState("");
+    const [dateError, setDateError] = useState("");
 
     const dispatch = useDispatch();
     const { allInvestmentData, loading } = useSelector(
@@ -144,7 +144,7 @@ console.log(allInvestmentData);
                 <section className="section">
                     <div className=" shadow p-3 mb-5 bg-body rounded  container-fluid c1 mt-0 ">
                         <div className="row">
-                            <div className="col-md-7 col-sm-12 ">
+                            <div className="col-md-9 col-sm-12 ">
                                 <h5 className="">
                                     <b>Investment</b>
                                 </h5>
@@ -154,18 +154,18 @@ console.log(allInvestmentData);
 
                                     <input
                                         type="search"
-                                        className="form-control   "
+                                        className="form-control"
                                         placeholder="Search"
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)}
                                     />
                                 </div>
                             </div>
-                            <div className='col-md-1 col-sm-12'>
+                            {/* <div className='col-md-1 col-sm-12'>
                                 <button type="button" className="btn btn-danger py-1">
                                     Search
                                 </button>
-                            </div>
+                            </div> */}
 
                         </div>
                         <hr className=" m-0 mb-2   " style={{
@@ -301,14 +301,14 @@ console.log(allInvestmentData);
                                     placeholder="Address"
                                 />
                             </div>
-                            <div className="col-md-3 ">
+                            {/* <div className="col-md-3 ">
                                 <input
                                     type="text"
                                     className="form-control a1"
                                     style={{ marginTop: "2.5rem" }}
                                     placeholder="Search"
                                 />
-                            </div>
+                            </div> */}
                         </div>
                         {/* form end */}
                         {/* Table Strat */}
