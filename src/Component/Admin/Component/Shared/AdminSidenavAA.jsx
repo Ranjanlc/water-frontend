@@ -10,13 +10,22 @@ const AdminSidenavAA = () => {
   const [sidenavWidth, setSidenavWidth] = useState(0);
   const [isOpen, setIsOpen] = useState(true);
 
+  // const [dropdownHeight, setDropdownHeight] = useState(0);
+  // const [openDropDown, setOpenDropDown] = useState(true);
+
+  // const dropOpen = () =>{
+  //   setDropdownHeight(300)
+  // }
+
   const openNav = () => {
     setSidenavWidth(300);
+    // setDropdownHeight();
     setIsOpen(!isOpen);
   };
 
   const closeNav = () => {
     setSidenavWidth(32);
+    // setDropdownHeight(30);
     setIsOpen(!isOpen);
   };
 
@@ -71,20 +80,9 @@ const AdminSidenavAA = () => {
 
       <aside
         id="sidebar"
-        className="sidebar     "
+        className="sidebar "
         style={{ width: `${sidenavWidth}px` }}
       >
-        {/* <div className="d-flex justify-content-between ">
-          <div onClick={closeNav} className="ms-2">
-            <i
-              className="fa-sharp fa-solid fa-xmark  toggle-sidebar-btn mt-1 fs-4"
-              style={{ marginLeft: "230px" }}
-            >
-              {" "}
-            </i>
-          </div>
-        </div> */}
-
         <ul className="sidebar-nav" id="sidebar-nav">
           <li className="nav-item">
             <Link className="nav-link " to="/admin">
@@ -99,13 +97,16 @@ const AdminSidenavAA = () => {
               data-bs-toggle="collapse"
               href=""
             >
-              <i
-                className="fa-sharp fa-light fa-layer-group fa-xl"
-                style={{ color: "#0f2243" }}
-              />
-              <span>Products</span>
-              <i className="bi bi-chevron-down ms-auto" />
+           
+                <i
+                  className="fa-sharp fa-light fa-layer-group fa-xl"
+                  style={{ color: "#0f2243" }}
+                />
+                <span>Products</span>
+                <i className="bi bi-chevron-down ms-auto " />
+              
             </a>
+
             <ul
               id="forms-nav"
               className="nav-content collapse "
@@ -444,7 +445,7 @@ const AdminSidenavAA = () => {
                 style={{ color: "#274a8b" }}
               ></i>
               <span className="me-1 ms-1" style={{ whiteSpace: "nowrap" }}>
-                 Branches
+                Branches
               </span>
               <i className="bi bi-chevron-down ms-auto" />
             </a>
@@ -497,6 +498,7 @@ const AdminSidenavAA = () => {
           </li>
         </ul>
       </aside>
+
       {/* End Sidebar*/}
     </>
   );
