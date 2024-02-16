@@ -201,7 +201,7 @@ export const AddNewEmployee = () => {
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Search Employee Name"
+                        placeholder="Search "
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                       />
