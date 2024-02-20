@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useSnackbar } from "notistack";
@@ -303,7 +303,7 @@ const Investment = () => {
 
                   <button
                     type="button"
-                    class="btn btn-success"
+                    className="btn btn-success"
                     style={{ backgroundColor: "rgb(26, 156, 128)" }}
                     onClick={handleSubmitInvestment}
                   >
